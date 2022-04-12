@@ -26,6 +26,26 @@ def get_init_support(D):
     
     return init_support
 
-pprint(get_init_support(D))
 
+def generate_seed_set(prev_freq_seq, min_support=2):
+    """"""
+    
+    _ = {k: (min_support - 1) for k in prev_freq_seq.keys()}  # subtract 1 from `min_support` to keep min frequent items
+    
+    _ = Counter(_)
+    
+    _ = prev_freq_seq - _
+    
+    seed_set = list(_.keys())
+    
+    return seed_set
+    
+
+init_support = get_init_support(D)
+# pprint(init_support)
 # >>> Counter({'f': 4, 'b': 4, 'e': 3, 'g': 3, 'a': 3, 'c': 2, 'd': 1})
+
+pprint(generate_seed_set(init_support))
+# >>> ['f', 'b', 'a', 'c', 'e', 'g']
+
+

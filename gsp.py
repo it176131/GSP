@@ -1,6 +1,6 @@
 from pprint import pprint
 import copy
-from itertools import chain
+from itertools import chain, product, combinations
 from collections import Counter
 
 
@@ -43,10 +43,25 @@ def generate_seed_set(prev_freq_seq, min_support=2):
     return seed_set
 
 
-def join_phase(L_km1):
+def join_phase(L_km1, k=1):
     """"""
     
-    L_km1
+    assert k > 0
+    
+    if k == 1:
+        
+        C_2_one_item_sets = list(product(*[L_km1, L_km1]))
+        C_2_one_item_sets = list([[i], [j]] for i, j in C_2_one_item_sets)
+        
+        C_2_two_item_sets = list(combinations(L_km1, 2))
+        C_2_two_item_sets = list([[i, j]] for i, j in C_2_two_item_sets)
+        
+        C_2_one_item_sets.extend(C_2_two_item_sets)
+        
+        return C_2_one_item_sets
+    
+    else:
+        raise NotImplementedError
 
 
 #def is_subsequence():
@@ -68,5 +83,7 @@ init_support = get_init_support(D)
 # pprint(init_support)
 # >>> Counter({'f': 4, 'b': 4, 'e': 3, 'g': 3, 'a': 3, 'c': 2, 'd': 1})
 
-pprint(generate_seed_set(init_support))
+L_1 = generate_seed_set(init_support)
 # >>> ['f', 'b', 'a', 'c', 'e', 'g']
+
+pprint(join_phase(L_1))

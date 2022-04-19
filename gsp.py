@@ -43,25 +43,18 @@ def generate_seed_set(prev_freq_seq, min_support=2):
     return seed_set
 
 
-def join_phase(L_km1, k=1):
+def generate_c_2_candidates(L_1):
     """"""
     
-    assert k > 0
+    C_2 = list(product(*[L_1, L_1]))
+    C_2 = list([[i], [j]] for i, j in C_2)
     
-    if k == 1:
-        
-        C_2_one_item_sets = list(product(*[L_km1, L_km1]))
-        C_2_one_item_sets = list([[i], [j]] for i, j in C_2_one_item_sets)
-        
-        C_2_two_item_sets = list(combinations(L_km1, 2))
-        C_2_two_item_sets = list([[i, j]] for i, j in C_2_two_item_sets)
-        
-        C_2_one_item_sets.extend(C_2_two_item_sets)
-        
-        return C_2_one_item_sets
+    C_2_two_item_sets = list(combinations(L_1, 2))
+    C_2_two_item_sets = list([[i, j]] for i, j in C_2_two_item_sets)
     
-    else:
-        raise NotImplementedError
+    C_2.extend(C_2_two_item_sets)
+    
+    return C_2
 
 
 #def is_subsequence():
@@ -86,4 +79,55 @@ init_support = get_init_support(D)
 L_1 = generate_seed_set(init_support)
 # >>> ['f', 'b', 'a', 'c', 'e', 'g']
 
-pprint(join_phase(L_1))
+pprint(generate_c_2_candidates(L_1))
+# >>> [[['f'], ['f']],
+# [['f'], ['e']],
+# [['f'], ['g']],
+# [['f'], ['a']],
+# [['f'], ['c']],
+# [['f'], ['b']],
+# [['e'], ['f']],
+# [['e'], ['e']],
+# [['e'], ['g']],
+# [['e'], ['a']],
+# [['e'], ['c']],
+# [['e'], ['b']],
+# [['g'], ['f']],
+# [['g'], ['e']],
+# [['g'], ['g']],
+# [['g'], ['a']],
+# [['g'], ['c']],
+# [['g'], ['b']],
+# [['a'], ['f']],
+# [['a'], ['e']],
+# [['a'], ['g']],
+# [['a'], ['a']],
+# [['a'], ['c']],
+# [['a'], ['b']],
+# [['c'], ['f']],
+# [['c'], ['e']],
+# [['c'], ['g']],
+# [['c'], ['a']],
+# [['c'], ['c']],
+# [['c'], ['b']],
+# [['b'], ['f']],
+# [['b'], ['e']],
+# [['b'], ['g']],
+# [['b'], ['a']],
+# [['b'], ['c']],
+# [['b'], ['b']],
+# [['f', 'e']],
+# [['f', 'g']],
+# [['f', 'a']],
+# [['f', 'c']],
+# [['f', 'b']],
+# [['e', 'g']],
+# [['e', 'a']],
+# [['e', 'c']],
+# [['e', 'b']],
+# [['g', 'a']],
+# [['g', 'c']],
+# [['g', 'b']],
+# [['a', 'c']],
+# [['a', 'b']],
+# [['c', 'b']]]

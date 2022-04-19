@@ -57,10 +57,22 @@ def generate_c_2_candidates(L_1):
     return C_2
 
 
-#def is_subsequence():
-    #""""""
-    #...
+def is_subsequence(sequence, main_sequence):
+    """"""
     
+    if len(sequence) > len(main_sequence):
+        return False
+    
+    for i, itemset in enumerate(main_sequence):
+        
+        if set(sequence[0]) <= set(itemset):
+            
+            if len(sequence) == 1:
+                
+                return True
+            return is_subsequence(sequence[1:], main_sequence[i+1:])
+    
+    return False
 
 
 #def generate_candidates(k):
@@ -79,7 +91,7 @@ init_support = get_init_support(D)
 L_1 = generate_seed_set(init_support)
 # >>> ['f', 'b', 'a', 'c', 'e', 'g']
 
-pprint(generate_c_2_candidates(L_1))
+C_2 = generate_c_2_candidates(L_1)
 # >>> [[['f'], ['f']],
 # [['f'], ['e']],
 # [['f'], ['g']],
@@ -131,3 +143,12 @@ pprint(generate_c_2_candidates(L_1))
 # [['a', 'c']],
 # [['a', 'b']],
 # [['c', 'b']]]
+
+# pprint(is_subsequence([["a"], ["a"]], D[0]))
+# >>> False
+# pprint(is_subsequence([["a"], ["a"]], D[1]))
+# >>> True
+# pprint(is_subsequence([["a"], ["a"]], D[2]))
+# >>> False
+# pprint(is_subsequence([["a"], ["a"]], D[3]))
+# >>> False

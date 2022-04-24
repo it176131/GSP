@@ -75,6 +75,22 @@ def is_subsequence(sequence, main_sequence):
     return False
 
 
+def prune_k_2(C_2, D, min_support):
+    """"""
+    
+    L_2 = []
+    
+    for c in C_2:
+        
+        _ = sum(is_subsequence(c, d) for d in D)
+        
+        if _ >= min_support:
+            
+            L_2.append(c)
+    
+    return L_2
+
+
 #def generate_candidates(k):
     #""""""
     #L_km1  # the set of all frequent (k-1)-sequences -> use to generate a superset of the set of all frequent k-sequences (L_k)
@@ -152,3 +168,19 @@ C_2 = generate_c_2_candidates(L_1)
 # >>> False
 # pprint(is_subsequence([["a"], ["a"]], D[3]))
 # >>> False
+
+L_2 = prune_k_2(C_2, D, 2)
+# >>> [[['g'], ['e']],
+# [['b'], ['g']],
+# [['b'], ['e']],
+# [['b'], ['f']],
+# [['f'], ['e']],
+# [['a'], ['g']],
+# [['a'], ['b']],
+# [['a'], ['e']],
+# [['a'], ['f']],
+# [['a'], ['c']],
+# [['c'], ['e']],
+# [['c'], ['f']],
+# [['g', 'f']],
+# [['b', 'a']]]

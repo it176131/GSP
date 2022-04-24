@@ -4,13 +4,6 @@ from itertools import chain, product, combinations
 from collections import Counter
 
 
-D = [
-    [["a", "b"], ["c"], ["f", "g"], ["g"], ["e"]],
-    [["a", "d"], ["c"], ["b"], ["a", "b", "e", "f"]],
-    [["a"], ["b"], ["f", "g"], ["e"]],
-    [["b"], ["f", "g"]]
-]
-
 def get_init_support(D):
     """"""
     
@@ -91,96 +84,7 @@ def prune_k_2(C_2, D, min_support):
     return L_2
 
 
-#def generate_candidates(k):
-    #""""""
-    #L_km1  # the set of all frequent (k-1)-sequences -> use to generate a superset of the set of all frequent k-sequences (L_k)
-    #L_k  # the set of all frequent k-sequences
+def generate_km1_subsequences():
+    """"""
     
-    #return C_k  # the set of candidate k-sequences
-    
-    
-
-init_support = get_init_support(D)
-# pprint(init_support)
-# >>> Counter({'f': 4, 'b': 4, 'e': 3, 'g': 3, 'a': 3, 'c': 2, 'd': 1})
-
-L_1 = generate_seed_set(init_support)
-# >>> ['f', 'b', 'a', 'c', 'e', 'g']
-
-C_2 = generate_c_2_candidates(L_1)
-# >>> [[['f'], ['f']],
-# [['f'], ['e']],
-# [['f'], ['g']],
-# [['f'], ['a']],
-# [['f'], ['c']],
-# [['f'], ['b']],
-# [['e'], ['f']],
-# [['e'], ['e']],
-# [['e'], ['g']],
-# [['e'], ['a']],
-# [['e'], ['c']],
-# [['e'], ['b']],
-# [['g'], ['f']],
-# [['g'], ['e']],
-# [['g'], ['g']],
-# [['g'], ['a']],
-# [['g'], ['c']],
-# [['g'], ['b']],
-# [['a'], ['f']],
-# [['a'], ['e']],
-# [['a'], ['g']],
-# [['a'], ['a']],
-# [['a'], ['c']],
-# [['a'], ['b']],
-# [['c'], ['f']],
-# [['c'], ['e']],
-# [['c'], ['g']],
-# [['c'], ['a']],
-# [['c'], ['c']],
-# [['c'], ['b']],
-# [['b'], ['f']],
-# [['b'], ['e']],
-# [['b'], ['g']],
-# [['b'], ['a']],
-# [['b'], ['c']],
-# [['b'], ['b']],
-# [['f', 'e']],
-# [['f', 'g']],
-# [['f', 'a']],
-# [['f', 'c']],
-# [['f', 'b']],
-# [['e', 'g']],
-# [['e', 'a']],
-# [['e', 'c']],
-# [['e', 'b']],
-# [['g', 'a']],
-# [['g', 'c']],
-# [['g', 'b']],
-# [['a', 'c']],
-# [['a', 'b']],
-# [['c', 'b']]]
-
-# pprint(is_subsequence([["a"], ["a"]], D[0]))
-# >>> False
-# pprint(is_subsequence([["a"], ["a"]], D[1]))
-# >>> True
-# pprint(is_subsequence([["a"], ["a"]], D[2]))
-# >>> False
-# pprint(is_subsequence([["a"], ["a"]], D[3]))
-# >>> False
-
-L_2 = prune_k_2(C_2, D, 2)
-# >>> [[['g'], ['e']],
-# [['b'], ['g']],
-# [['b'], ['e']],
-# [['b'], ['f']],
-# [['f'], ['e']],
-# [['a'], ['g']],
-# [['a'], ['b']],
-# [['a'], ['e']],
-# [['a'], ['f']],
-# [['a'], ['c']],
-# [['c'], ['e']],
-# [['c'], ['f']],
-# [['g', 'f']],
-# [['b', 'a']]]
+    raise NotImplementedError()

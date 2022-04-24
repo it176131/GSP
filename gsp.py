@@ -84,7 +84,7 @@ def prune_k_2(C_2, D, min_support):
     return L_2
 
 
-def generate_km1_subsequences():
+def generate_km1_subsequences(C_k):
     """"""
     
     raise NotImplementedError()
